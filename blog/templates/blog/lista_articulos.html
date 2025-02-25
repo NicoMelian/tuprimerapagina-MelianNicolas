@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog El Señor de los Anillos</title>
+</head>
+<body>
+    <h1>Artículos de El Señor de los Anillos</h1>
+    <a href="{% url 'crear_articulo' %}">Crear nuevo artículo</a>
+    <ul>
+        {% for articulo in articulos %}
+            <li>
+                <a href="#">{{ articulo.titulo }}</a> - {{ articulo.fecha_publicacion }}
+                <br>
+                Categoría: {{ articulo.categoria.nombre }}
+                <br>
+                {{ articulo.contenido|slice:":200" }}...
+                <br>
+                <a href="{% url 'agregar_comentario' articulo.id %}">Agregar comentario</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+{% for articulo in articulos %}
+    <div>
+        <h2>{{ articulo.titulo }}</h2>
+        <p>{{ articulo.contenido|truncatewords:20 }}</p>  <!-- Muestra solo una parte del contenido -->
+        <a href="{% url 'detalle_articulo' articulo.id %}">Ver detalles y comentarios</a> 
+    </div>
+{% empty %}
+    <p>No hay artículos disponibles.</p>
+{% endfor %}
