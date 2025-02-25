@@ -7,7 +7,7 @@
         <li>
             <strong>{{ comentario.autor }}:</strong>
             <p>{{ comentario.contenido }}</p>
-            <small>Publicado el: {{ comentario.fecha_publicacion }}</small>
+            <small>Publicado el: {{ comentario.fecha_comentario|date:"d/m/Y H:i" }}</small>
         </li>
     {% empty %}
         <li>No hay comentarios todavía.</li>
